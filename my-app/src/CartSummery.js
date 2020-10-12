@@ -41,8 +41,13 @@ class CartSummery extends Component {
 cartEmtity(){
   return(<NavItem>
     <NavLink>Boş sepet</NavLink>
-  </NavItem>);
+  </NavItem>
+  );
 }
+
+
+
+
     render() {
         return (
             <div>
