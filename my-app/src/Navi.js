@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import CartSummery from './CartSummery'
+import React, { Component } from "react";
+import CartSummery from "./CartSummery";
 import {
   Collapse,
   Navbar,
@@ -8,12 +8,10 @@ import {
   Nav,
   NavItem,
   NavLink,
-  
-  NavbarText} from 'reactstrap';
-
-  
- 
-
+  NavbarText,
+  Form,
+} from "reactstrap";
+import { Link } from "react-router-dom";
 
 class Navi extends Component {
   constructor(props) {
@@ -21,45 +19,41 @@ class Navi extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
   toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   }
 
-
-
   render() {
     return (
-
-        <Navbar expand="md" className="stick-nav">
+      <Navbar expand="md" className="stick-nav">
         <NavbarBrand href="/">reactstrap</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-              </NavItem>
-
+        <NavbarToggler onClick={this.toggle} />
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink>  <Link to="/form1">Go Form</Link></NavLink>
+            
+            </NavItem>
+            <NavItem>
+            <NavLink><Link to="/form1-2">Go Form2</Link></NavLink>
               
-              <CartSummery removeFromCart={this.props.removeFromCart} cart={this.props.cart}></CartSummery>
-            </Nav>
-            <NavbarText>Simple Text</NavbarText>
-           
+            </NavItem>
 
-          </Collapse>
-        </Navbar>
-
+            <CartSummery
+              removeFromCart={this.props.removeFromCart}
+              cart={this.props.cart}
+            ></CartSummery>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+        </Collapse>
+      </Navbar>
     );
   }
 }
-
-
 
 export default Navi;

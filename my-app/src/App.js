@@ -7,8 +7,10 @@ import { Route, Switch } from "react-router-dom";
 
 import alertify from "alertifyjs";
 import NotFound from "./NotFound";
-import CartSummery from "./CartSummery";
+
 import CartList from "./CartList";
+import FormDemo from "./FormDemo";
+import FormDemo2 from "./FormDemo2";
 
 class App extends Component {
   state = { currentKatagori: "selam", products: [], cart: [] };
@@ -20,6 +22,7 @@ class App extends Component {
       (c) => c.product.productID !== product.productID
     );
     this.setState({ cart: newCart });
+    alertify.error(product.name + " deleted");
   };
   addtoCard = (product) => {
     let newCart = this.state.cart;
@@ -72,7 +75,7 @@ class App extends Component {
                     path="/"
                     render={(props) => (
                       <Product
-                      {...props}
+                        {...props}
                         removeFromCart={this.removefromcart}
                         addtoCard={this.addtoCard}
                         products={this.state.products}
@@ -81,7 +84,27 @@ class App extends Component {
                       ></Product>
                     )}
                   ></Route>
-                  <Route path="/cart" component={CartList}></Route>
+
+                  <Route
+                    path="/form1"
+                   component={FormDemo}
+                  ></Route>
+
+                   <Route
+                    path="/form1-2"
+                   component={FormDemo2}
+                  ></Route>
+
+                  <Route
+                    path="/cart"
+                    render={(props) => (
+                      <CartList
+                        {...props}
+                        removeFromCart={this.removefromcart}
+                        cart={this.state.cart}
+                      ></CartList>
+                    )}
+                  ></Route>
                   <Route component={NotFound}></Route>
                 </Switch>
               </Col>
